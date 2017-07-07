@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Saf
+        psr4_prefix: Saf
+        src_path: app
