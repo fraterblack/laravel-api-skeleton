@@ -42,6 +42,6 @@ class Api extends RouteFile
             return [
                 'message' => 'user page'
             ];
-        })->middleware('auth:api');
+        })->middleware('api');
     }
 }
