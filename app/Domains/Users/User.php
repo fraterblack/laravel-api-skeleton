@@ -13,10 +13,11 @@ use Saf\Domains\Users\Notifications\ResetPassword as ResetPasswordNotification;
 use Saf\Domains\Users\Presenters\UserPresenter;
 use Saf\Support\Domain\Model\DeletableTrait;
 use Saf\Support\ViewPresenter\PresentableTrait;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, JWTSubject
 {
-    use Authenticatable, CanResetPassword, PresentableTrait, Notifiable, HasDefender, DeletableTrait;
+    use Authenticatable, CanResetPassword, Notifiable, HasDefender, PresentableTrait, DeletableTrait;
 
     protected $presenter = UserPresenter::class;
 
@@ -41,6 +42,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     ];
 
     protected $protectedIds = [1];
+
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
     /**
      * Send the password reset notification.

@@ -23,25 +23,37 @@ class Api extends RouteFile
         $this->registerV1Routes();
     }
 
+    protected function registerDefaultRoutes()
+    {
+        $this->userRoutes();
+        $this->loginRoutes();
+    }
+
     /**
      * Registra rotas da versão 1 da API
      */
     protected function registerV1Routes()
     {
         $this->router->group(['prefix' => 'v1'], function () {
-            $this->userRoutes();
+            $this->registerDefaultRoutes();
         });
     }
 
-    /**
-     * Rotas de Usuários
-     */
     protected function userRoutes()
     {
-        $this->router->get('test', function () {
-            return [
-                'message' => 'user page'
-            ];
-        })->middleware('api');
+        $this->router->get('test', function (\Illuminate\Http\Request $request) {
+            return $request->user();
+
+            /*return [
+                'message' => 'test page'
+            ];*/
+        })->middleware('auth:api');
+    }
+
+    protected function loginRoutes()
+    {
+        $this->router->group(['namespace' => 'Authentication'], function () {
+            $this->router->post('login', 'LoginController@login');
+        });
     }
 }
