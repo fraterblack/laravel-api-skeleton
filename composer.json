@@ -7,26 +7,24 @@
   ],
   "license": "MIT",
   "type": "project",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "php": ">=5.6.4",
     "laravel/framework": "5.3.*",
     "laravelcollective/html": "5.3.*",
     "barryvdh/laravel-ide-helper": "^2.1",
     "artesaos/defender": "^0.6.2",
-    "rutorika/sortable": "^3.2",
     "cviebrock/eloquent-sluggable": "^4.1.1",
     "owen-it/laravel-auditing": "^2.0",
     "artesaos/seotools": "v0.7.3.6",
     "doctrine/dbal": "^2.5",
     "guzzlehttp/guzzle": "~5.0",
-    "sofa/eloquence": "~5.3@dev",
     "artesaos/warehouse": "3.0.*",
-    "mews/purifier": "^2.0",
-    "barryvdh/laravel-debugbar": "^2.3",
     "artesaos/migrator": "^1.2",
-    "intervention/image": "2.*",
     "fraterblack/attacher": "dev-master",
-    "predis/predis": "^1.1"
+    "predis/predis": "^1.1",
+    "tymon/jwt-auth": "~1.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
@@ -66,9 +64,6 @@
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "php artisan optimize"
     ]
-  },
-  "config": {
-    "preferred-install": "dist"
   },
   "repositories": [
     {

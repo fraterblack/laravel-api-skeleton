@@ -177,11 +177,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
-        Rutorika\Sortable\SortableServiceProvider::class,
-        Sofa\Eloquence\ServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        Mews\Purifier\PurifierServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Support Service Providers...
