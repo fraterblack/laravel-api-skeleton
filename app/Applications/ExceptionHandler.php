@@ -4,11 +4,12 @@ namespace Saf\Applications;
 
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler;
+use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ExceptionHandler extends Handler
@@ -40,28 +41,48 @@ class ExceptionHandler extends Handler
     }
 
     /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
-     * @return \Illuminate\Http\Response
+     * @inheritdoc
      */
     public function render($request, Exception $e)
     {
         return parent::render($request, $e);
     }
 
-    /**
-     * Convert an authentication exception into an unauthenticated response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
-     * @return \Illuminate\Http\Response
-     */
-    protected function unauthenticated($request, AuthenticationException $exception)
+
+    protected function prepareResponse($request, Exception $e)
     {
         if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return $this->toIlluminateResponse($this->convertExceptionToResponse($e), $e);
+        }
+
+        return parent::prepareResponse($request, $e);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function convertExceptionToResponse(Exception $e)
+    {
+        $e = FlattenException::create($e);
+
+        if (config('app.debug')) {
+            $message = $e->getMessage();
+        } else {
+            $message = Response::$statusTexts[$e->getStatusCode()];
+        }
+
+        return response()->json(['message' => $message], $e->getStatusCode());
+    }
+
+    /**
+     * @param $request
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    protected function unauthenticated($request)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], Response::HTTP_UNAUTHORIZED);
         }
 
         return redirect()->guest('login');

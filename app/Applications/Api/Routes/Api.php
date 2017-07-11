@@ -27,6 +27,7 @@ class Api extends RouteFile
     {
         $this->userRoutes();
         $this->loginRoutes();
+        $this->signUpRoutes();
     }
 
     /**
@@ -41,12 +42,8 @@ class Api extends RouteFile
 
     protected function userRoutes()
     {
-        $this->router->get('test', function (\Illuminate\Http\Request $request) {
+        $this->router->get('user', function (\Illuminate\Http\Request $request) {
             return $request->user();
-
-            /*return [
-                'message' => 'test page'
-            ];*/
         })->middleware('auth:api');
     }
 
@@ -54,6 +51,13 @@ class Api extends RouteFile
     {
         $this->router->group(['namespace' => 'Authentication'], function () {
             $this->router->post('login', 'LoginController@login');
+        });
+    }
+
+    protected function signUpRoutes()
+    {
+        $this->router->group(['namespace' => 'Authentication'], function () {
+            $this->router->post('register', 'RegisterController@register');
         });
     }
 }

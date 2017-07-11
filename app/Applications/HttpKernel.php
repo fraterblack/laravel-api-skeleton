@@ -2,7 +2,20 @@
 
 namespace Saf\Applications;
 
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
+use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Routing\Middleware\ThrottleRequests;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Saf\Applications\Infrastructure\Http\Middleware\AlwaysExpectsJson;
+use Saf\Applications\Infrastructure\Http\Middleware\EncryptCookies;
+use Saf\Applications\Infrastructure\Http\Middleware\RedirectIfAuthenticated;
+use Saf\Applications\Infrastructure\Http\Middleware\RedirectIfWrongUrlOrProtocol;
+use Saf\Applications\Infrastructure\Http\Middleware\VerifyCsrfToken;
 
 class HttpKernel extends Kernel
 {
@@ -15,6 +28,7 @@ class HttpKernel extends Kernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        //AlwaysExpectsJson::class
     ];
 
     /**
@@ -24,20 +38,22 @@ class HttpKernel extends Kernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Saf\Applications\Infrastructure\Http\Middleware\EncryptCookies::class,
-            \Saf\Applications\Infrastructure\Http\Middleware\VerifyCsrfToken::class,
-            \Saf\Applications\Infrastructure\Http\Middleware\RedirectIfWrongUrlOrProtocol::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
+            ShareErrorsFromSession::class,
+            SubstituteBindings::class,
+            EncryptCookies::class,
+            VerifyCsrfToken::class,
+            RedirectIfWrongUrlOrProtocol::class,
         ],
 
         'api' => [
-            'throttle:60,1',
+            AlwaysExpectsJson::class,
+            'throttle:10,1',
             'bindings',
         ],
     ];
+
 
     /**
      * The application's route middleware.
@@ -47,12 +63,12 @@ class HttpKernel extends Kernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \Saf\Applications\Infrastructure\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth' => Authenticate::class,
+        'auth.basic' => AuthenticateWithBasicAuth::class,
+        'bindings' => SubstituteBindings::class,
+        'can' => Authorize::class,
+        'guest' => RedirectIfAuthenticated::class,
+        'throttle' => ThrottleRequests::class,
 
         // Access control using permissions
         //'needsPermission' => \Artesaos\Defender\Middlewares\NeedsPermissionMiddleware::class,
