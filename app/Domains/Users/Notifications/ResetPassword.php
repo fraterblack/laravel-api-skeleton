@@ -9,23 +9,24 @@ use Saf\Domains\Users\User;
 class ResetPassword extends Notification
 {
     /**
-     * The password reset token.
+     * The password reset link.
      *
      * @var string
      */
-    public $token;
+    public $link;
 
     protected $user;
 
     /**
      * Create a notification instance.
      *
-     * @param  string  $token
+     * @param  string  $link
+     * @param  User  $user
      * @return void
      */
-    public function __construct($token, User $user)
+    public function __construct($link, User $user)
     {
-        $this->token = $token;
+        $this->link = $link;
         $this->user = $user;
     }
 
@@ -48,13 +49,11 @@ class ResetPassword extends Notification
      */
     public function toMail($notifiable)
     {
-        $name = $this->user->name;
-
         return (new MailMessage)
             ->view('emails.password')
             ->subject('Resetar senha')
-            ->greeting('Olá ' . $name . '!')
+            ->greeting('Olá ' . $this->user->name . '!')
             ->line('Clique no link para resetar sua senha:')
-            ->action('Resetar sua senha', route('admin.auth.getResetPassword', $this->token));
+            ->action('Resetar sua senha', $this->link);
     }
 }

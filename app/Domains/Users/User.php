@@ -3,11 +3,7 @@
 namespace Saf\Domains\Users;
 
 use Artesaos\Defender\Traits\HasDefender;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Saf\Domains\Users\Notifications\ResetPassword as ResetPasswordNotification;
 use Saf\Domains\Users\Presenters\UserPresenter;
@@ -15,9 +11,11 @@ use Saf\Support\Domain\Model\DeletableTrait;
 use Saf\Support\ViewPresenter\PresentableTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, JWTSubject
+class User extends Authenticatable implements JWTSubject
 {
-    use Authenticatable, CanResetPassword, Notifiable, HasDefender, PresentableTrait, DeletableTrait;
+    use Notifiable, HasDefender, PresentableTrait, DeletableTrait;
+
+    public static $resetPasswordRoute;
 
     protected $presenter = UserPresenter::class;
 
@@ -61,6 +59,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new ResetPasswordNotification($token, $this));
+        $link = str_replace('{token}', $token, self::$resetPasswordRoute);
+
+        $this->notify(new ResetPasswordNotification($link, $this));
     }
 }

@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'contato@bck.com.br', 'name' => 'Loucos por Festa'],
+    'from' => ['address' => 'contato@bck.com.br', 'name' => 'Minha API'],
 
     /*
     |--------------------------------------------------------------------------

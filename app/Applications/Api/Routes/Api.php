@@ -25,9 +25,7 @@ class Api extends RouteFile
 
     protected function registerDefaultRoutes()
     {
-        $this->userRoutes();
-        $this->loginRoutes();
-        $this->signUpRoutes();
+        $this->registerAuthenticationRoutes();
     }
 
     /**
@@ -40,6 +38,19 @@ class Api extends RouteFile
         });
     }
 
+    /**
+     * Registra as rotas do Namespace Authentication
+     */
+    protected function registerAuthenticationRoutes()
+    {
+        $this->router->group(['namespace' => 'Authentication'], function () {
+            $this->userRoutes();
+            $this->loginRoutes();
+            $this->signUpRoutes();
+            $this->passwordRoutes();
+        });
+    }
+
     protected function userRoutes()
     {
         $this->router->get('user', function (\Illuminate\Http\Request $request) {
@@ -49,15 +60,17 @@ class Api extends RouteFile
 
     protected function loginRoutes()
     {
-        $this->router->group(['namespace' => 'Authentication'], function () {
-            $this->router->post('login', 'LoginController@login');
-        });
+        $this->router->post('login', 'LoginController@login');
     }
 
     protected function signUpRoutes()
     {
-        $this->router->group(['namespace' => 'Authentication'], function () {
-            $this->router->post('register', 'RegisterController@register');
-        });
+        $this->router->post('register', 'RegisterController@register');
+    }
+
+    protected function passwordRoutes()
+    {
+        $this->router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+        $this->router->post('password/reset', 'ResetPasswordController@reset');
     }
 }

@@ -47,7 +47,7 @@ class ExceptionHandler extends Handler
     {
         return parent::render($request, $e);
     }
-    
+
     /**
      * @inheritdoc
      */

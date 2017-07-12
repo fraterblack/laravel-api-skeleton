@@ -8,10 +8,6 @@ class ApplicationServiceProvider extends ServiceProvider
 {
     protected $alias = 'api';
 
-    protected $hasViews = true;
-
-    protected $hasTranslations = true;
-
     protected $providers = [
         RouteServiceProvider::class,
     ];

@@ -11,7 +11,7 @@ return [
     # Each style takes as the parameter is one \Intervention\Image\Image
     # See more in http://image.intervention.io/
     'style_guides' => [
-        'default' => [
+        /*'default' => [
             'thumb' => function ($image) {
                 $image->widen(120);
                 return $image;
@@ -27,7 +27,7 @@ return [
                 $image->fit(60, 60);
                 return $image;
             },
-        ],
+        ],*/
     ],
     'image_quality' => 82
 ];
