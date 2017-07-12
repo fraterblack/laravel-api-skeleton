@@ -47,17 +47,7 @@ class ExceptionHandler extends Handler
     {
         return parent::render($request, $e);
     }
-
-
-    protected function prepareResponse($request, Exception $e)
-    {
-        if ($request->expectsJson()) {
-            return $this->toIlluminateResponse($this->convertExceptionToResponse($e), $e);
-        }
-
-        return parent::prepareResponse($request, $e);
-    }
-
+    
     /**
      * @inheritdoc
      */

@@ -28,7 +28,6 @@ class HttpKernel extends Kernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        //AlwaysExpectsJson::class
     ];
 
     /**
@@ -70,10 +69,8 @@ class HttpKernel extends Kernel
         'guest' => RedirectIfAuthenticated::class,
         'throttle' => ThrottleRequests::class,
 
-        // Access control using permissions
+        //ACL
         //'needsPermission' => \Artesaos\Defender\Middlewares\NeedsPermissionMiddleware::class,
-
-        // Simpler access control, uses only the groups
         //'needsRole' => \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class
     ];
 }
