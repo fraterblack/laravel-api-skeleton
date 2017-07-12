@@ -1,6 +1,6 @@
 <?php
 
-namespace Saf\Support\Domain\Repository;
+namespace Saf\Support\Domain\Repository\Traits;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ trait AdvancedIndexRepositoryTrait
      *
      * @return \Illuminate\Pagination\AbstractPaginator
      */
-    public function index(Request $request, array $columns = [ '*' ], array $orderBy = [], $take = null)
+    public function index(Request $request, array $columns = ['*'], array $orderBy = [], $take = null)
     {
         $modelTable = $this->newQuery()->getModel()->getTable();
 
@@ -172,6 +172,7 @@ trait AdvancedIndexRepositoryTrait
      *
      * @param array|string $filterTerms
      * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|null $query
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|null
      */
     protected function createWhereClauseForFilter($filterTerms, $query = null)
     {

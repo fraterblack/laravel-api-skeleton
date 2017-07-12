@@ -1,6 +1,6 @@
 <?php
 
-namespace Saf\Support\Domain\Repository;
+namespace Saf\Support\Domain\Repository\Traits;
 
 trait RetrieveExtendedRepositoryTrait
 {
@@ -13,7 +13,7 @@ trait RetrieveExtendedRepositoryTrait
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findByID($id, $columns = [ '*' ], $fail = true)
+    public function findByID($id, $columns = ['*'], $fail = true)
     {
         if ($fail) {
             return $this->newQuery()->select($this->prefixNestedColumns($this->getModelTable(), $columns))->findOrFail($id);
@@ -33,7 +33,7 @@ trait RetrieveExtendedRepositoryTrait
      *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Contracts\Pagination\Paginator
      */
-    public function getAll($columns = [ '*' ], $take = 15, $paginate = true)
+    public function getAll($columns = ['*'], $take = 15, $paginate = true)
     {
         $query = $this->newQuery();
         $query->select($this->prefixNestedColumns($this->getModelTable(), $columns));
@@ -50,7 +50,7 @@ trait RetrieveExtendedRepositoryTrait
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findByField($field, $value, $columns = [ '*' ])
+    public function findByField($field, $value, $columns = ['*'])
     {
         return $this->newQuery()->select($this->prefixNestedColumns($this->getModelTable(), $columns))->where($field, $value)->get();
     }
@@ -63,7 +63,7 @@ trait RetrieveExtendedRepositoryTrait
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findBySlug($slug, $columns = [ '*' ])
+    public function findBySlug($slug, $columns = ['*'])
     {
         $query = $this->newQuery();
 
@@ -82,7 +82,7 @@ trait RetrieveExtendedRepositoryTrait
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findByCode($code, $columns = [ '*' ])
+    public function findByCode($code, $columns = ['*'])
     {
         $query = $this->newQuery();
 

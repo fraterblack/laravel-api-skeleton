@@ -173,7 +173,6 @@ return [
         Artesaos\Warehouse\WarehouseServiceProvider::class,
         Artesaos\Defender\Providers\DefenderServiceProvider::class,
         Artesaos\Attacher\Providers\AttacherServiceProvider::class,
-        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
@@ -247,12 +246,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Defender' => Artesaos\Defender\Facades\Defender::class,
         'Attacher'   => Artesaos\Attacher\Facades\Attacher::class,
-        'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
-        'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
-        'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
-        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-        'Purifier' => Mews\Purifier\Facades\Purifier::class,
     ],
 
     /*

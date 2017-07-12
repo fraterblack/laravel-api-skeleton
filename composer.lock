@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "76c47dadf946883d557c1fd66f4733eb",
-    "content-hash": "7d885ac8565cfefd78385d1b8912a984",
+    "hash": "b62b57bcaa6cb1bbf0b1a9d509b7d9f7",
+    "content-hash": "ceb6e6ccfb81947c6867f17bfcee5684",
     "packages": [
         {
             "name": "artesaos/defender",
@@ -100,57 +100,6 @@
             ],
             "description": "Namespaced Migrations for Laravel 5.1+",
             "time": "2017-01-21 20:01:26"
-        },
-        {
-            "name": "artesaos/seotools",
-            "version": "v0.7.3.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/artesaos/seotools.git",
-                "reference": "50a02e9d46aabb7fad741ea5a9dee5dfb1478e23"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/artesaos/seotools/zipball/50a02e9d46aabb7fad741ea5a9dee5dfb1478e23",
-                "reference": "50a02e9d46aabb7fad741ea5a9dee5dfb1478e23",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/config": "~5",
-                "illuminate/support": "~5",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "2.1.x",
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Artesaos\\SEOTools\\": "src/SEOTools/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Vinicius",
-                    "email": "luiz.vinicius73@gmail.com"
-                }
-            ],
-            "description": "SEO Tools for Laravel and Lumen",
-            "keywords": [
-                "laravel5",
-                "lumen",
-                "metatags",
-                "opengraph",
-                "seo",
-                "seotools",
-                "webmaster"
-            ],
-            "time": "2015-09-14 10:17:46"
         },
         {
             "name": "artesaos/warehouse",

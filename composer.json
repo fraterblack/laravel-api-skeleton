@@ -17,7 +17,6 @@
     "artesaos/defender": "^0.6.2",
     "cviebrock/eloquent-sluggable": "^4.1.1",
     "owen-it/laravel-auditing": "^2.0",
-    "artesaos/seotools": "v0.7.3.6",
     "doctrine/dbal": "^2.5",
     "guzzlehttp/guzzle": "~5.0",
     "artesaos/warehouse": "3.0.*",

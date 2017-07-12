@@ -3,7 +3,7 @@
 namespace Saf\Domains\Users\Database\Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
-use Saf\Support\Database\Migration;
+use Saf\Support\Domain\Database\Migration;
 
 
 /**

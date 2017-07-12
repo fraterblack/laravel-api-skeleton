@@ -1,6 +1,6 @@
 <?php
 
-namespace Saf\Support\Database;
+namespace Saf\Support\Domain\Database;
 
 use Illuminate\Database\Migrations\Migration as LaravelMigration;
 

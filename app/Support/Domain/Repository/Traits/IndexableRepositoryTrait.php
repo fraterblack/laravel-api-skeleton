@@ -1,6 +1,6 @@
 <?php
 
-namespace Saf\Support\Domain\Repository;
+namespace Saf\Support\Domain\Repository\Traits;
 
 trait IndexableRepositoryTrait
 {

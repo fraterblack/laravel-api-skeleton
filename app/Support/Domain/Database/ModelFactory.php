@@ -1,10 +1,9 @@
 <?php
 
-namespace Saf\Support\Database;
+namespace Saf\Support\Domain\Database;
 
 use Faker\Generator;
 use Illuminate\Database\Eloquent\Factory;
-
 
 /**
  * Class ModelFactory.

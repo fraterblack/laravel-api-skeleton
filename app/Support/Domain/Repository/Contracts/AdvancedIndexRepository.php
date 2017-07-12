@@ -15,7 +15,7 @@ interface AdvancedIndexRepository
      *
      * @return \Illuminate\Contracts\Pagination\Paginator
      */
-    public function index(Request $request, array $columns = [ '*' ], array $orderBy = [], $take = null);
+    public function index(Request $request, array $columns = ['*'], array $orderBy = [], $take = null);
 
     /**
      * @param Request $request
