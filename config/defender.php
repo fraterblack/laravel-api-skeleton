@@ -54,7 +54,7 @@ return [
     /*
      * Forbidden callback
      */
-    'forbidden_callback' => \Saf\Applications\Infrastructure\Handlers\ForbiddenHandler::class,
+    'forbidden_callback' => \Saf\Interfaces\Shared\Handlers\ForbiddenHandler::class,
 
     /*
      * Use blade template helpers

@@ -190,9 +190,9 @@ return [
         Saf\Domains\Users\Providers\DomainServiceProvider::class,
 
         /*
-         * Applications Service Providers...
+         * Interfaces Service Providers...
          */
-        Saf\Applications\Api\Providers\ApplicationServiceProvider::class,
+        Saf\Interfaces\Api\Providers\InterfaceServiceProvider::class,
     ],
 
     /*
