@@ -2,37 +2,17 @@
 
 namespace Saf\Applications\Api\Http\Controllers;
 
-use Artesaos\SEOTools\Traits\SEOTools;
 use Saf\Support\Http\Controller;
+use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-    use SEOTools;
+    protected $request;
 
-    function __construct()
+    function __construct(Request $request)
     {
+        $this->request = $request;
+
         parent::__construct();
-    }
-
-    protected $itemsPerPage = 16;
-
-    protected function getItemsPerPage()
-    {
-        return $this->itemsPerPage;
-    }
-
-    protected function setSeo($attributes = array())
-    {
-        if (isset($attributes['title'])) {
-            $this->seo()->setTitle($attributes['title']);
-        }
-
-        if (isset($attributes['description'])) {
-            $this->seo()->setDescription($attributes['description']);
-        }
-
-        if (isset($attributes['keywords'])) {
-            $this->seo()->metatags()->setKeywords($attributes['keywords']);
-        }
     }
 }

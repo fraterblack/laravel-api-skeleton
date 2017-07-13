@@ -16,7 +16,7 @@ class StoreUserRequest extends Request
         return [
             'name' => 'bail|required',
             'email' => 'bail|required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|min:6',
         ];
     }
 }

@@ -22,7 +22,7 @@ class UpdateUserRequest extends Request
         return [
             'name' => 'bail|required',
             'email' => 'required|email|max:255|unique:users,email,' . $this->route()->getParameter('id'),
-            'password' => 'required_with:redefine_password|confirmed|min:6',
+            'password' => 'required_with:redefine_password|min:6',
         ];
     }
 }

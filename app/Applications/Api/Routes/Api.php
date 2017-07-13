@@ -26,6 +26,7 @@ class Api extends RouteFile
     protected function registerDefaultRoutes()
     {
         $this->registerAuthenticationRoutes();
+        $this->registerAccountRoutes();
     }
 
     /**
@@ -39,23 +40,16 @@ class Api extends RouteFile
     }
 
     /**
+     *
      * Registra as rotas do Namespace Authentication
+     *
      */
     protected function registerAuthenticationRoutes()
     {
         $this->router->group(['namespace' => 'Authentication'], function () {
-            $this->userRoutes();
             $this->loginRoutes();
-            $this->signUpRoutes();
             $this->passwordRoutes();
         });
-    }
-
-    protected function userRoutes()
-    {
-        $this->router->get('user', function (\Illuminate\Http\Request $request) {
-            return $request->user();
-        })->middleware('auth:api');
     }
 
     protected function loginRoutes()
@@ -63,14 +57,32 @@ class Api extends RouteFile
         $this->router->post('login', 'LoginController@login');
     }
 
-    protected function signUpRoutes()
-    {
-        $this->router->post('register', 'RegisterController@register');
-    }
-
     protected function passwordRoutes()
     {
         $this->router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
         $this->router->post('password/reset', 'ResetPasswordController@reset');
+    }
+
+    /**
+     *
+     * Registra as rotas do Namespace Account
+     *
+     */
+    protected function registerAccountRoutes()
+    {
+        $this->router->group(['namespace' => 'Account'], function () {
+            $this->subscriptionRoutes();
+            $this->userRoutes();
+        });
+    }
+
+    protected function subscriptionRoutes()
+    {
+        $this->router->post('subscription', 'SubscriptionController@register');
+    }
+
+    protected function userRoutes()
+    {
+        $this->router->get('me', 'AccountController@show')->middleware('auth:api');
     }
 }
