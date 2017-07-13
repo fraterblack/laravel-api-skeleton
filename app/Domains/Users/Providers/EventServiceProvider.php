@@ -13,10 +13,10 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Events\NewUserEvent::class => [
-            Listeners\NewUserNotification::class
+            //Listeners\NewUserNotification::class
         ],
         Events\UpdatedUserEvent::class => [
-            Listeners\UpdatedUserNotification::class
+            //Listeners\UpdatedUserNotification::class
         ],
     ];
 }

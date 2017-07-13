@@ -2,11 +2,11 @@
 
 namespace Saf\Interfaces\Api\Http\Controllers\Account;
 
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Saf\Domains\Users\Contracts\UserRepository;
+use Saf\Domains\Users\Events\NewUserEvent;
 use Saf\Interfaces\Shared\Http\Requests\Users\StoreUserRequest;
-use Saf\Domains\Users\User;
 use Saf\Support\Http\Controller;
 
 class SubscriptionController extends Controller
@@ -24,12 +24,19 @@ class SubscriptionController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  StoreUserRequest $request
+     * @param  StoreUserRequest $request'
+     * @param UserRepository $userRepository
      * @return \Illuminate\Http\Response
      */
-    public function register(StoreUserRequest $request)
+    public function register(StoreUserRequest $request, UserRepository $userRepository)
     {
-        event(new Registered($user = $this->create($request->all())));
+        $newPassword = $request->get('password');
+
+        $request->merge([ 'password' => bcrypt($request->get('password')) ]);
+
+        $user = $userRepository->create($request->all());
+
+        event(new NewUserEvent($user, $newPassword));
 
         $this->guard()->login($user);
 
@@ -40,22 +47,6 @@ class SubscriptionController extends Controller
         }
 
         return response()->json(['token' => $token], Response::HTTP_CREATED);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param array $data
-     *
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
     }
 
     /**

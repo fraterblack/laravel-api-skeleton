@@ -6,18 +6,14 @@ use Artesaos\Defender\Traits\HasDefender;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Saf\Domains\Users\Notifications\ResetPassword as ResetPasswordNotification;
-use Saf\Domains\Users\Presenters\UserPresenter;
 use Saf\Support\Domain\Model\DeletableTrait;
-use Saf\Support\ViewPresenter\PresentableTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, HasDefender, PresentableTrait, DeletableTrait;
+    use Notifiable, HasDefender, DeletableTrait;
 
     public static $resetPasswordRoute;
-
-    protected $presenter = UserPresenter::class;
 
     protected $fillable = [
         'name',

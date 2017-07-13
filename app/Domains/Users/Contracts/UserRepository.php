@@ -3,11 +3,10 @@
 namespace Saf\Domains\Users\Contracts;
 
 use Saf\Domains\Users\User;
-use Saf\Support\Domain\Repository\Contracts\AdvancedIndexRepository;
 use Saf\Support\Domain\Repository\Contracts\Repository;
 use Saf\Support\Domain\Repository\Contracts\RetrieveExtendedRepository;
 
-interface UserRepository extends Repository, RetrieveExtendedRepository, AdvancedIndexRepository
+interface UserRepository extends Repository, RetrieveExtendedRepository
 {
     public function softDelete(User $userModel);
 

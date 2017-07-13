@@ -7,13 +7,12 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\DatabaseManager;
 use Saf\Domains\Users\Contracts\UserRepository as UserRepositoryContract;
 use Saf\Domains\Users\User;
-use Saf\Support\Domain\Repository\AdvancedIndexRepositoryTrait as AdvancedIndexRepository;
 use Saf\Support\Domain\Repository\Repository;
-use Saf\Support\Domain\Repository\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
+use Saf\Support\Domain\Repository\Traits\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
 
 class UserRepository extends Repository implements UserRepositoryContract
 {
-    use RetrieveExtendedRepository, AdvancedIndexRepository;
+    use RetrieveExtendedRepository;
 
     /**
      * Model class for repo.

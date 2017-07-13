@@ -13,4 +13,10 @@ class Request extends FormRequest
     {
         return true;
     }
+
+    public function expectsJson()
+    {
+        //Sobrescreve método na classe pai, forçando a resposta como um Json
+        return true;
+    }
 }

@@ -47,12 +47,11 @@ class HttpKernel extends Kernel
         ],
 
         'api' => [
-            AlwaysExpectsJson::class,
+            'always_expects_json',
             'throttle:10,1',
             'bindings',
         ],
     ];
-
 
     /**
      * The application's route middleware.
@@ -62,6 +61,7 @@ class HttpKernel extends Kernel
      * @var array
      */
     protected $routeMiddleware = [
+        'always_expects_json' => AlwaysExpectsJson::class,
         'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'bindings' => SubstituteBindings::class,
