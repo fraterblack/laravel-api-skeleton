@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
 use Saf\Domains\Users\User;
+use Saf\Interfaces\Shared\Http\Requests\Users\ForgotPasswordRequest;
 use Saf\Support\Http\Controller;
 
 class ForgotPasswordController extends Controller
@@ -34,16 +35,11 @@ class ForgotPasswordController extends Controller
     /**
      * Send a reset link to the given user.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ForgotPasswordRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sendResetLinkEmail(Request $request)
+    public function sendResetLinkEmail(ForgotPasswordRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'route' => 'required|url',
-        ]);
-
         User::$resetPasswordRoute = $request->get('route');
 
         // We will send the password reset link to this user. Once we have attempted
