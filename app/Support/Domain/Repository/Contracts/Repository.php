@@ -8,7 +8,12 @@ use Artesaos\Warehouse\Contracts\Operations\ReadRecords;
 use Artesaos\Warehouse\Contracts\Operations\UpdateRecords;
 use Artesaos\Warehouse\Contracts\Repository as WarehouseRepositoryContract;
 
-interface Repository extends WarehouseRepositoryContract, CreateRecords, ReadRecords, UpdateRecords, DeleteRecords
+interface Repository extends
+    WarehouseRepositoryContract,
+    CreateRecords,
+    ReadRecords,
+    UpdateRecords,
+    DeleteRecords
 {
     /**
      * Delete entry by id

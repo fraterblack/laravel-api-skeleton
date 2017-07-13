@@ -6,13 +6,15 @@ use Artesaos\Defender\Contracts\Defender;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\DatabaseManager;
 use Saf\Domains\Users\Contracts\UserRepository as UserRepositoryContract;
+use Saf\Domains\Users\Transformers\UserTransformer;
 use Saf\Domains\Users\User;
 use Saf\Support\Domain\Repository\Repository;
 use Saf\Support\Domain\Repository\Traits\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
+use Artesaos\Warehouse\Operations\TransformRecords;
 
 class UserRepository extends Repository implements UserRepositoryContract
 {
-    use RetrieveExtendedRepository;
+    use RetrieveExtendedRepository, TransformRecords;
 
     /**
      * Model class for repo.
@@ -20,6 +22,8 @@ class UserRepository extends Repository implements UserRepositoryContract
      * @var \Illuminate\Database\Eloquent\Model
      */
     protected $modelClass = User::class;
+
+    protected $transformerClass = UserTransformer::class;
 
     protected $fieldSearchable = [
         'name' => 'like',

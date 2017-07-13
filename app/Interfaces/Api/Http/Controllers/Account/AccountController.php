@@ -2,12 +2,13 @@
 
 namespace Saf\Interfaces\Api\Http\Controllers\Account;
 
+use Saf\Domains\Users\Contracts\UserRepository;
 use Saf\Interfaces\Api\Http\Controllers\BaseController;
 
 class AccountController extends BaseController
 {
-    public function show()
+    public function show(UserRepository $userRepository)
     {
-        return $this->request->user();
+        return $userRepository->transformItem($this->request->user());
     }
 }
