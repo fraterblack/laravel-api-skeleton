@@ -68,9 +68,5 @@ class HttpKernel extends Kernel
         'can' => Authorize::class,
         'guest' => RedirectIfAuthenticated::class,
         'throttle' => ThrottleRequests::class,
-
-        //ACL
-        //'needsPermission' => \Artesaos\Defender\Middlewares\NeedsPermissionMiddleware::class,
-        //'needsRole' => \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class
     ];
 }

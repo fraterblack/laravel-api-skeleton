@@ -2,7 +2,6 @@
 
 namespace Saf\Domains\Users\Repositories;
 
-use Artesaos\Defender\Contracts\Defender;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\DatabaseManager;
 use Saf\Domains\Users\Contracts\UserRepository as UserRepositoryContract;
@@ -34,12 +33,10 @@ class UserRepository extends Repository implements UserRepositoryContract
         'created_at' => 'desc'
     ];
 
-    protected $defender;
     protected $db;
 
     public function __construct(Application $app)
     {
-        $this->defender = $app->make(Defender::class);
         $this->db = $app->make(DatabaseManager::class);
     }
 

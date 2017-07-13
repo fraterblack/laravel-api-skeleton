@@ -2,7 +2,6 @@
 
 namespace Saf\Domains\Users;
 
-use Artesaos\Defender\Traits\HasDefender;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Saf\Domains\Users\Notifications\ResetPassword as ResetPasswordNotification;
@@ -11,7 +10,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, HasDefender, DeletableTrait;
+    use Notifiable, DeletableTrait;
 
     public static $resetPasswordRoute;
 

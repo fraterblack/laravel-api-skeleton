@@ -169,9 +169,9 @@ return [
         /*
          * Package Service Providers...
          */
+        Laravel\Tinker\TinkerServiceProvider::class,
         Migrator\MigrationServiceProvider::class,
         Artesaos\Warehouse\WarehouseServiceProvider::class,
-        Artesaos\Defender\Providers\DefenderServiceProvider::class,
         Artesaos\Attacher\Providers\AttacherServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
@@ -244,7 +244,6 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Defender' => Artesaos\Defender\Facades\Defender::class,
         'Attacher'   => Artesaos\Attacher\Facades\Attacher::class,
     ],
 

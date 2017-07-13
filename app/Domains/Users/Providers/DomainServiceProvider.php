@@ -45,18 +45,12 @@ class DomainServiceProvider extends ServiceProvider
     protected $migrations = [
         Migrations\CreateUsersTable::class,
         Migrations\CreatePasswordResetsTable::class,
-        Migrations\CreateDefenderRolesTable::class,
-        Migrations\CreateDefenderPermissionsTable::class,
-        Migrations\CreateDefenderRoleUserTable::class,
-        Migrations\CreateDefenderPermissionUserTable::class,
-        Migrations\CreateDefenderPermissionRoleTable::class,
     ];
 
     /**
      * @var array Some Seeders
      */
     protected $seeders = [
-        Seeders\DefenderRolesSeeder::class,
         Seeders\UsersSeeder::class,
     ];
 

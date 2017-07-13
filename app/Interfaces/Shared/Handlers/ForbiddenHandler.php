@@ -2,10 +2,9 @@
 
 namespace Saf\Interfaces\Shared\Handlers;
 
-use Artesaos\Defender\Contracts\ForbiddenHandler as ForbiddenHandlerContract;
 use Illuminate\Http\Request;
 
-class ForbiddenHandler implements ForbiddenHandlerContract
+class ForbiddenHandler
 {
     private $request;
 
