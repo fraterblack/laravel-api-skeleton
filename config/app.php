@@ -181,6 +181,7 @@ return [
         /*
          * Support Service Providers...
          */
+        Saf\Support\Generators\Providers\ServiceProvider::class,
         Saf\Support\Services\Mail\Providers\MailServiceProvider::class,
 
         /**

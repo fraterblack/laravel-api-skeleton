@@ -1,0 +1,17 @@
+<?php
+
+namespace Saf\Domains\NamespacedDummyModule\Repositories;
+
+use Saf\Support\Domain\Repository\Repository;
+use Saf\Domains\NamespacedDummyModule\DummyModel;
+use Saf\Domains\NamespacedDummyModule\Contracts\DummyClass as DummyClassContract;
+
+class DummyClass extends Repository implements DummyClassContract
+{
+    /**
+     * Model class for repo.
+     *
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    protected $modelClass = DummyModel::class;
+}

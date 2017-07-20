@@ -1,0 +1,9 @@
+<?php
+
+namespace Saf\Domains\NamespacedDummyModule\Contracts;
+
+use Saf\Support\Domain\Repository\Contracts\Repository;
+
+interface DummyClass extends Repository
+{
+}
