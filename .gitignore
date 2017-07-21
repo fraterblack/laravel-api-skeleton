@@ -1,7 +1,7 @@
 __sources/_ignore
 node_modules
 public/uploads/images/
-
+/cover
 /vendor
 /node_modules
 Homestead.yaml
