@@ -4,6 +4,7 @@ namespace Saf\Support\Generators\Commands;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
+use Saf\Support\Generators\Exceptions\InvalidOptionException;
 use Symfony\Component\Console\Input\InputOption;
 
 class RepositoryMakeCommand extends GeneratorCommand
@@ -36,6 +37,8 @@ class RepositoryMakeCommand extends GeneratorCommand
      */
     public function fire()
     {
+        $this->validatesOptions();
+
         if (parent::fire() === false) {
             return;
         }
@@ -106,16 +109,6 @@ class RepositoryMakeCommand extends GeneratorCommand
     }
 
     /**
-     * Get the desired class name from the input.
-     *
-     * @return string
-     */
-    protected function getNameInput()
-    {
-        return trim($this->argument('name')) . 'Repository';
-    }
-
-    /**
      * Get the console command arguments.
      *
      * @return array
@@ -126,5 +119,25 @@ class RepositoryMakeCommand extends GeneratorCommand
             ['model', 'm', InputOption::VALUE_REQUIRED, 'The model that the repository applies to.'],
             ['namespace', 'ns', InputOption::VALUE_REQUIRED, 'The namespace of module that the repository applies to.'],
         ];
+    }
+
+    /**
+     * Validate obligatory options
+     *
+     * @throws InvalidOptionException
+     *
+     * @return bool
+     */
+    protected function validatesOptions()
+    {
+        if (empty($this->option('namespace'))) {
+            throw new InvalidOptionException('The namespace module option is obligatory.');
+        }
+
+        if (empty($this->option('model'))) {
+            throw new InvalidOptionException('The model option is obligatory');
+        }
+
+        return true;
     }
 }

@@ -4,6 +4,7 @@ namespace Saf\Support\Generators\Commands;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
+use Saf\Support\Generators\Exceptions\InvalidOptionException;
 use Symfony\Component\Console\Input\InputOption;
 
 class RepositoryContractMakeCommand extends GeneratorCommand
@@ -28,6 +29,20 @@ class RepositoryContractMakeCommand extends GeneratorCommand
      * @var string
      */
     protected $type = 'RepositoryContract';
+
+    /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function fire()
+    {
+        $this->validatesOptions();
+        
+        if (parent::fire() === false) {
+            return;
+        }
+    }
 
     /**
      * Build the class with the given name.
@@ -77,16 +92,6 @@ class RepositoryContractMakeCommand extends GeneratorCommand
     }
 
     /**
-     * Get the desired class name from the input.
-     *
-     * @return string
-     */
-    protected function getNameInput()
-    {
-        return trim($this->argument('name')) . 'Repository';
-    }
-
-    /**
      * Get the console command arguments.
      *
      * @return array
@@ -96,5 +101,21 @@ class RepositoryContractMakeCommand extends GeneratorCommand
         return [
             ['namespace', 'ns', InputOption::VALUE_REQUIRED, 'The namespace of module that the repository contract applies to.'],
         ];
+    }
+
+    /**
+     * Validate obligatory options
+     *
+     * @throws InvalidOptionException
+     *
+     * @return bool
+     */
+    protected function validatesOptions()
+    {
+        if (empty($this->option('namespace'))) {
+            throw new InvalidOptionException('The namespace module option is obligatory.');
+        }
+
+        return true;
     }
 }
