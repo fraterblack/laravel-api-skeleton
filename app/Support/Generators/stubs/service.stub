@@ -1,0 +1,9 @@
+<?php
+
+namespace Saf\Domains\NamespacedDummyModule\Services;
+
+use Saf\Domains\NamespacedDummyModule\Contracts\DummyClass as DummyClassContract;
+
+class DummyClass implements DummyClassContract
+{
+}

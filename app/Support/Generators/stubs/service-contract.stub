@@ -1,0 +1,7 @@
+<?php
+
+namespace Saf\Domains\NamespacedDummyModule\Contracts;
+
+interface DummyClass
+{
+}

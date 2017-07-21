@@ -7,28 +7,28 @@ use Illuminate\Console\GeneratorCommand;
 use Saf\Support\Generators\Exceptions\InvalidOptionException;
 use Symfony\Component\Console\Input\InputOption;
 
-class RepositoryContractMakeCommand extends GeneratorCommand
+class ServiceMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'generate:repository-contract';
+    protected $name = 'generate:service';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new repository contract interface';
+    protected $description = 'Create a new service class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'RepositoryContract';
+    protected $type = 'Service';
 
     /**
      * Execute the console command.
@@ -42,6 +42,21 @@ class RepositoryContractMakeCommand extends GeneratorCommand
         if (parent::fire() === false) {
             return;
         }
+
+        $this->createContract();
+    }
+
+    /**
+     * Create a migration file for the model.
+     *
+     * @return void
+     */
+    protected function createContract()
+    {
+        $this->call('generate:service-contract', [
+            'name' => $this->argument('name'),
+            '--namespace' => $this->option('namespace')
+        ]);
     }
 
     /**
@@ -77,7 +92,7 @@ class RepositoryContractMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../stubs/repository-contract.stub';
+        return __DIR__.'/../stubs/service.stub';
     }
 
     /**
@@ -88,7 +103,7 @@ class RepositoryContractMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Domains\\' . Str::studly($this->option('namespace')) . '\Contracts';
+        return $rootNamespace . '\Domains\\' . Str::studly($this->option('namespace')) . '\Services';
     }
 
     /**
@@ -99,7 +114,7 @@ class RepositoryContractMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['namespace', 'ns', InputOption::VALUE_REQUIRED, 'The namespace of module that the repository contract applies to.'],
+            ['namespace', 'ns', InputOption::VALUE_REQUIRED, 'The namespace of module that the service applies to.'],
         ];
     }
 

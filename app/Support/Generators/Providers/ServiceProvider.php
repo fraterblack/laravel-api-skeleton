@@ -15,5 +15,8 @@ class ServiceProvider extends LaravelServiceProvider
     {
         $this->commands(\Saf\Support\Generators\Commands\RepositoryMakeCommand::class);
         $this->commands(\Saf\Support\Generators\Commands\RepositoryContractMakeCommand::class);
+
+        $this->commands(\Saf\Support\Generators\Commands\ServiceMakeCommand::class);
+        $this->commands(\Saf\Support\Generators\Commands\ServiceContractMakeCommand::class);
     }
 }
