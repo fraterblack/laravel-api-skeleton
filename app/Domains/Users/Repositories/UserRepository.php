@@ -8,12 +8,11 @@ use Saf\Domains\Users\Contracts\UserRepository as UserRepositoryContract;
 use Saf\Domains\Users\Transformers\UserTransformer;
 use Saf\Domains\Users\User;
 use Saf\Support\Domain\Repository\Repository;
-use Saf\Support\Domain\Repository\Traits\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
 use Artesaos\Warehouse\Operations\TransformRecords;
 
 class UserRepository extends Repository implements UserRepositoryContract
 {
-    use RetrieveExtendedRepository, TransformRecords;
+    use TransformRecords;
 
     /**
      * Model class for repo.

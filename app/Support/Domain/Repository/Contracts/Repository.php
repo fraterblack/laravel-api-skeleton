@@ -3,25 +3,16 @@
 namespace Saf\Support\Domain\Repository\Contracts;
 
 use Artesaos\Warehouse\Contracts\Operations\CreateRecords;
-use Artesaos\Warehouse\Contracts\Operations\DeleteRecords;
-use Artesaos\Warehouse\Contracts\Operations\ReadRecords;
 use Artesaos\Warehouse\Contracts\Operations\UpdateRecords;
 use Artesaos\Warehouse\Contracts\Repository as WarehouseRepositoryContract;
 
 interface Repository extends
     WarehouseRepositoryContract,
     CreateRecords,
-    ReadRecords,
     UpdateRecords,
-    DeleteRecords
+    ExtendedReadRecordsRepository,
+    ExtendedDeleteRecordsRepository
 {
-    /**
-     * Delete entry by id
-     * @param $id
-     * @return mixed
-     */
-    public function deleteById($id);
-
     /**
      * Load relations of a Model
      * @param \Illuminate\Database\Eloquent\Model|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Contracts\Pagination\Paginator $model

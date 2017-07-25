@@ -4,10 +4,9 @@ namespace Saf\Domains\Users\Contracts;
 
 use Saf\Domains\Users\User;
 use Saf\Support\Domain\Repository\Contracts\Repository;
-use Saf\Support\Domain\Repository\Contracts\RetrieveExtendedRepository;
 use Artesaos\Warehouse\Contracts\Operations\TransformRecords;
 
-interface UserRepository extends Repository, RetrieveExtendedRepository, TransformRecords
+interface UserRepository extends Repository, TransformRecords
 {
     public function softDelete(User $userModel);
 
