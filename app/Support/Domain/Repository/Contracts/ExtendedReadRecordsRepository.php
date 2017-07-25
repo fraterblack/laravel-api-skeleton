@@ -2,7 +2,9 @@
 
 namespace Saf\Support\Domain\Repository\Contracts;
 
-interface ExtendedReadRecordsRepository
+use Artesaos\Warehouse\Contracts\Operations\ReadRecords;
+
+interface ExtendedReadRecordsRepository extends ReadRecords
 {
     public function findBySlug($slug, $columns = [ '*' ]);
 

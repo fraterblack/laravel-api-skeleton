@@ -2,7 +2,9 @@
 
 namespace Saf\Support\Domain\Repository\Contracts;
 
-interface ExtendedDeleteRecordsRepository
+use Artesaos\Warehouse\Contracts\Operations\DeleteRecords;
+
+interface ExtendedDeleteRecordsRepository extends DeleteRecords
 {
     /**
      * Delete entry by id
