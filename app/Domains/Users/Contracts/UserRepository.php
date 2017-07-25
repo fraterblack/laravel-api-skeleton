@@ -8,8 +8,6 @@ use Artesaos\Warehouse\Contracts\Operations\TransformRecords;
 
 interface UserRepository extends Repository, TransformRecords
 {
-    public function softDelete(User $userModel);
-
     public function search($keyWord, array $columns = ['*']);
 
     public function attachRole(User $user, $role);

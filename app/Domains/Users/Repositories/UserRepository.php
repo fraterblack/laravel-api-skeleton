@@ -2,8 +2,6 @@
 
 namespace Saf\Domains\Users\Repositories;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Database\DatabaseManager;
 use Saf\Domains\Users\Contracts\UserRepository as UserRepositoryContract;
 use Saf\Domains\Users\Transformers\UserTransformer;
 use Saf\Domains\Users\User;
@@ -22,34 +20,6 @@ class UserRepository extends Repository implements UserRepositoryContract
     protected $modelClass = User::class;
 
     protected $transformerClass = UserTransformer::class;
-
-    protected $fieldSearchable = [
-        'name' => 'like',
-        'email' => 'like',
-    ];
-
-    protected $orderingDefault = [
-        'created_at' => 'desc'
-    ];
-
-    protected $db;
-
-    public function __construct(Application $app)
-    {
-        $this->db = $app->make(DatabaseManager::class);
-    }
-
-    public function softDelete(User $user)
-    {
-        //Modifica as credenciais de acesso antes do SoftDelete
-        $user->name = date("Ymd_His") . "_" . $user->name;
-        $user->email = date("Ymd_His") . "_" . $user->email;
-        $user->save();
-
-        if ($this->delete($user)) {
-            return true;
-        }
-    }
 
     public function search($keyWord, array $columns = ['*'])
     {
