@@ -57,7 +57,7 @@ abstract class Repository extends WarehouseRepository implements RepositoryContr
 
     /**
      * Returns the limit to results
-     *
+     * @param int|null $limit
      * @return int
      */
     public function resolveResultLimit($limit = null)
