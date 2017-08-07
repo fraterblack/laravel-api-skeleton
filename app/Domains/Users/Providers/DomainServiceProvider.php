@@ -5,6 +5,7 @@ namespace Saf\Domains\Users\Providers;
 use Saf\Domains\Users\Contracts;
 use Saf\Domains\Users\Database\Migrations;
 use Saf\Domains\Users\Database\Seeders;
+use Saf\Domains\Users\Database\Factories;
 use Saf\Domains\Users\Repositories;
 use Saf\Support\Domain\ServiceProvider;
 
@@ -57,5 +58,7 @@ class DomainServiceProvider extends ServiceProvider
     /**
      * @var array Model factories
      */
-    protected $factories = [];
+    protected $factories = [
+        Factories\UserFactory::class
+    ];
 }
